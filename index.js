@@ -1,8 +1,10 @@
 const express =require('express')
 const app = express()
+const dotenv =require('dotenv')
+dotenv.config()
 const indexRouter =require('./Route/index')
 const usersRouter =require('./Route/users')
-const PORT=process.env.PORT || 8000
+const PORT=process.env.PORT 
 app.use(express.json())
 
 

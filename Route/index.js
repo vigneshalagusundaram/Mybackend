@@ -37,8 +37,12 @@ router.put('/:id', async (req, res) => {
    
     try {
     
-        let data = await UserDetails.findByIdAndUpdate(req.params.id)
+        let data = await UserDetails.findById(req.params.id)
         if (data) {
+            data.name=req.body.name
+            data.email=req.body.email
+            data.password=req.body.password
+            await data.save()
             res.status(200).send({
                 massage: "Data Updated Successfully ",
           
@@ -103,6 +107,32 @@ router.post('/', async (req, res) => {
             error: error?.massage
         })
     }
+})
+router.delete('/:id', async (req, res) => {
+    try {
+        
+        let data = await UserDetails.deleteOne(req.params.id)
+        if (data._id) {
+            res.status(200).send({
+                massage: "Data Deleted Successfully ",
+             
+            })
+        } else {
+            res.status(400).send({
+                massage: "Invalid User Id",
+                data
+            })
+
+        }
+
+    } catch (error) {
+
+        res.status(500).send({
+            massage: "Internal server error ",
+
+        })
+    } 
+   
 })
 
 module.exports = router

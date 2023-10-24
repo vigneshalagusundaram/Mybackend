@@ -1,6 +1,6 @@
 const mongodb =require('mongodb')
-const dbName ='MyFirstBackEnd'
-const dbUrl=`mongodb+srv://avignesh05:1991A@cluster0.mycun9n.mongodb.net/${dbName}`
+const dbName =process.env.DB_NAME
+const dbUrl=`${process.env.DB_URL}/${dbName}`
 
 
 module.exports={mongodb,dbName,dbUrl} 
