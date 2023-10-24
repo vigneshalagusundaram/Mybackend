@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
     try {
         let db = await client.db(dbName)
         let data = await db.collection('users').find().toArray()
-        console.log(data)
+
+       
         res.status(200).send({
             massage: "Data Fatch Successfully ",
             data
